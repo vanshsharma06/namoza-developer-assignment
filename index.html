@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="OrthoNow - Expert orthopaedic care. Book your consultation today. Get relief from knee and back pain from experienced specialists.">
+    <title>OrthoNow - Orthopaedic Clinics | Expert Orthopaedic Care</title>
+
+    <!--
+    ==================================================================
+    OrthoNow Landing Page
+    Single-file implementation with embedded CSS and JavaScript
+    Optimized for PageSpeed 90+
+    ==================================================================
+    -->
+
+    <style>
+        /*
+        ==================================================================
+        CSS RESET & BASE STYLES
+        ==================================================================
+        */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1a1a2e;
+            background-color: #ffffff;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+        /*
+        ==================================================================
+        TYPOGRAPHY
+        ==================================================================
+        */
+        h1, h2, h3 {
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+        }
+
+        h2 {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+        }
+
+        h3 {
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        /*
+        ==================================================================
+        COLOR PALETTE
+        ==================================================================
+        */
+        :root {
+            --primary: #0066cc;
+            --primary-dark: #0052a3;
+            --primary-light: #e6f0fa;
+            --secondary: #1a1a2e;
+            --accent: #00a86b;
+            --white: #ffffff;
+            --gray-100: #f5f5f5;
+            --gray-200: #e5e5e5;
+            --gray-500: #737373;
+            --error: #dc2626;
+            --success: #16a34a;
+        }
+
+        /*
+        ==================================================================
+        LAYOUT UTILITIES
+        ==================================================================
+        */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        @media (min-width: 768px) {
+            .section {
+                padding: 6rem 0;
+            }
+        }
+
+        /*
+        ==================================================================
+        BUTTON STYLES
+        ==================================================================
+        */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            min-height: 52px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+        }
+
+        .btn-primary:focus {
+            outline: 3px solid var(--primary-light);
+            outline-offset: 2px;
+        }
+
+        .btn-secondary {
+            background-color: var(--white);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover,
+        .btn-secondary:focus {
+            background-color: var(--primary-light);
+        }
+
+        /*
+        ==================================================================
+        HERO SECTION
+        ==================================================================
+        */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--white) 50%, var(--primary-light) 100%);
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 102, 204, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            display: grid;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        @media (min-width: 992px) {
+            .hero-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 4rem;
+            }
+        }
+
+        .hero-text {
+            max-width: 600px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1rem;
+            margin-bottom: 1.5rem;
+
+            background: var(--primary-light);
+            color: var(--primary);
+
+            border: 1px solid rgba(0, 102, 204, 0.15);
+            border-radius: 999px;
+
+            font-size: 0.9rem;
+            font-weight: 600;
+            line-height: 1.4;
+
+            box-shadow: 0 2px 8px rgba(0, 102, 204, 0.08);
+        }
+
+        /* Small icon before text */
+        .hero-badge::before {
+            content: "✔";
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 20px;
+            height: 20px;
+
+            background: var(--primary);
+            color: var(--white);
+
+            border-radius: 50%;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hero-badge {
+                font-size: 0.8rem;
+                padding: 0.5rem 0.9rem;
+            }
+        }
+
+        .hero-title {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title .highlight {
+            color: var(--primary);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+            color: var(--gray-500);
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .hero-cta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /*
+        ==================================================================
+        TRUST SECTION
+        ==================================================================
+        */
+        .trust {
+            background-color: var(--secondary);
+            color: var(--white);
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .trust-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .trust-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .trust-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .trust-number {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .trust-label {
+            font-size: 0.9375rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /*
+        ==================================================================
+        FORM SECTION
+        ==================================================================
+        */
+        .consultation {
+            background-color: var(--gray-100);
+        }
+
+        .consultation-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        @media (min-width: 768px) {
+            .consultation-wrapper {
+                padding: 3rem;
+            }
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray-500);
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 8px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            min-height: 52px;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        .form-input.error {
+            border-color: var(--error);
+        }
+
+        .form-input.error:focus {
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+        }
+
+        .error-message {
+            color: var(--error);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .error-message.visible {
+            display: block;
+        }
+
+        .form-submit {
+            width: 100%;
+        }
+
+        .form-success {
+            text-align: center;
+            padding: 2rem;
+            display: none;
+        }
+
+        .form-success.visible {
+            display: block;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background-color: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 2rem;
+        }
+
+        .form-success h3 {
+            color: var(--secondary);
+            margin-bottom: 0.75rem;
+        }
+
+        .form-success p {
+            color: var(--gray-500);
+            margin-bottom: 0;
+        }
+
+        /*
+        ==================================================================
+        FOOTER
+        ==================================================================
+        */
+        .footer {
+            background-color: var(--secondary);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 2rem 0;
+            text-align: center;
+            font-size: 0.875rem;
+        }
+
+        .footer a {
+            color: var(--white);
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        footer .container p {
+            padding-top: 10px;
+            text-align: center;
+        }
+
+        /*
+        ==================================================================
+        ACCESSIBILITY - REDUCED MOTION
+        ==================================================================
+        */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /*
+        ==================================================================
+        SCREEN READER ONLY
+        ==================================================================
+        */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <!--
+    ==================================================================
+    HEADER / NAVIGATION
+    ==================================================================
+    -->
+    <header role="banner">
+        <nav role="navigation" aria-label="Main navigation">
+            <div class="container">
+                <a href="#" class="logo" aria-label="OrthoNow Home">
+                    <span style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">OrthoNow</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!--
+    ==================================================================
+    MAIN CONTENT
+    ==================================================================
+    -->
+    <main role="main">
+        <!--
+        ==================================================================
+        HERO SECTION
+        - Strong headline targeting the audience pain points
+        - Supporting subheadline with value proposition
+        - CTA button linking to consultation form
+        ==================================================================
+        -->
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <span class="hero-badge">
+                    Trusted Orthopaedic Care • 9 Clinics Across Bengaluru, Hyderabad & Chennai
+                </span>
+
+                        <h1 id="hero-title" class="hero-title">
+                    Get an Expert Orthopaedic Opinion for
+                    <span class="highlight">Knee & Back Pain</span>
+                </h1>
+                        <p class="hero-subtitle">
+                    Designed for busy working professionals in Bengaluru aged 28–50.
+                    Consult experienced orthopaedic specialists, receive an expert evaluation,
+                    and take the first step toward living pain-free.
+                </p>
+               
+                        <div class="hero-cta">
+                            <a href="#consultation" class="btn btn-primary">
+                                Book Your Consultation
+                            </a>
+                            <a href="#trust" class="btn btn-secondary">
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Decorative illustration using CSS shapes for performance -->
+                    <div class="hero-visual" aria-hidden="true">
+                        <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 400px; margin: 0 auto;">
+                            <circle cx="200" cy="200" r="180" fill="#0066cc" fill-opacity="0.1"/>
+                            <circle cx="200" cy="180" r="80" fill="#0066cc" fill-opacity="0.2"/>
+                            <circle cx="200" cy="180" r="50" fill="#0066cc" fill-opacity="0.3"/>
+                            <rect x="180" y="260" width="40" height="80" rx="8" fill="#0066cc"/>
+                            <rect x="160" y="280" width="20" height="60" rx="4" fill="#0066cc" fill-opacity="0.7"/>
+                            <rect x="220" y="280" width="20" height="60" rx="4" fill="#0066cc" fill-opacity="0.7"/>
+                            <circle cx="140" cy="160" r="20" fill="#00a86b" fill-opacity="0.3"/>
+                            <circle cx="260" cy="160" r="20" fill="#00a86b" fill-opacity="0.3"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--
+        ==================================================================
+        TRUST SECTION
+        - Key statistics to build credibility
+        - Targets working professionals aged 28-50
+        ==================================================================
+        -->
+        <section class="trust section" id="trust" aria-labelledby="trust-title">
+            <div class="container">
+                <h2 id="trust-title" class="sr-only">Why Choose OrthoNow</h2>
+                <div class="trust-grid">
+                    <div class="trust-item">
+                        <div class="trust-icon" aria-hidden="true">🏥</div>
+                        <span class="trust-number">9</span>
+                        <span class="trust-label">Clinics</span>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-icon" aria-hidden="true">👨‍⚕️</div>
+                        <span class="trust-number">25+</span>
+                        <span class="trust-label">Orthopaedic Specialists</span>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-icon" aria-hidden="true">😊</div>
+                        <span class="trust-number">10,000+</span>
+                        <span class="trust-label">Happy Patients</span>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-icon" aria-hidden="true">⭐</div>
+                        <span class="trust-number">4.9</span>
+                        <span class="trust-label">Google Rating</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--
+        ==================================================================
+        CONSULTATION FORM SECTION
+        - Lead capture form with validation
+        - Name and Phone fields only (minimal friction)
+        ==================================================================
+        -->
+        <section class="consultation section" id="consultation" aria-labelledby="consultation-title">
+            <div class="container">
+                <div class="consultation-wrapper">
+                    <h2 id="consultation-title" class="section-title">Book Your Free Consultation</h2>
+                    <p class="section-subtitle">Fill in your details and our team will contact you within 24 hours.</p>
+
+                    <form id="consultation-form" novalidate>
+                        <div class="form-group">
+                            <label for="name" class="form-label">Full Name</label>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                class="form-input"
+                                placeholder="Enter your full name"
+                                required
+                                aria-describedby="name-error"
+                                autocomplete="name"
+                            >
+                            <span id="name-error" class="error-message" role="alert">Please enter your name</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                class="form-input"
+                                placeholder="Enter 10-digit phone number"
+                                required
+                                aria-describedby="phone-error"
+                                autocomplete="tel"
+                                inputmode="tel"
+                            >
+                            <span id="phone-error" class="error-message" role="alert">Please enter a valid 10-digit phone number</span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary form-submit">
+                            Book Your Consultation
+                        </button>
+                    </form>
+
+                    <!-- Success message shown after form submission -->
+                    <div id="form-success" class="form-success" role="status" aria-live="polite">
+                        <div class="success-icon" aria-hidden="true">✓</div>
+                        <h3>Thank You!</h3>
+                        <p>Our team will contact you shortly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!--
+    ==================================================================
+    FOOTER
+    - Simple footer with copyright
+    ==================================================================
+    -->
+    <footer role="contentinfo">
+        <div class="container">
+            <p>&copy; 2026 OrthoNow. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!--
+    ==================================================================
+    JAVASCRIPT
+    - Form validation
+    - DataLayer push on successful submission
+    - UI state management
+    ==================================================================
+    -->
+    <script>
+        /**
+         * OrthoNow - Consultation Form Handler
+         * Handles form validation, submission, and analytics tracking
+         */
+        (function() {
+            'use strict';
+
+            // DOM Elements
+            const form = document.getElementById('consultation-form');
+            const nameInput = document.getElementById('name');
+            const phoneInput = document.getElementById('phone');
+            const nameError = document.getElementById('name-error');
+            const phoneError = document.getElementById('phone-error');
+            const formSuccess = document.getElementById('form-success');
+
+            /**
+             * Validate phone number - must be exactly 10 digits
+             * @param {string} phone - Phone number to validate
+             * @returns {boolean} - True if valid
+             */
+            function isValidPhone(phone) {
+                // Remove any non-digit characters and check for exactly 10 digits
+                const digitsOnly = phone.replace(/\D/g, '');
+                return /^\d{10}$/.test(digitsOnly);
+            }
+
+            /**
+             * Show error state for input
+             * @param {HTMLInputElement} input - Input element
+             * @param {HTMLElement} errorElement - Error message element
+             */
+            function showError(input, errorElement) {
+                input.classList.add('error');
+                errorElement.classList.add('visible');
+                input.setAttribute('aria-invalid', 'true');
+            }
+
+            /**
+             * Remove error state from input
+             * @param {HTMLInputElement} input - Input element
+             * @param {HTMLElement} errorElement - Error message element
+             */
+            function clearError(input, errorElement) {
+                input.classList.remove('error');
+                errorElement.classList.remove('visible');
+                input.setAttribute('aria-invalid', 'false');
+            }
+
+            /**
+             * Validate entire form
+             * @returns {boolean} - True if form is valid
+             */
+            function validateForm() {
+                let isValid = true;
+
+                // Validate name
+                if (!nameInput.value.trim()) {
+                    showError(nameInput, nameError);
+                    isValid = false;
+                } else {
+                    clearError(nameInput, nameError);
+                }
+
+                // Validate phone
+                if (!phoneInput.value.trim() || !isValidPhone(phoneInput.value)) {
+                    showError(phoneInput, phoneError);
+                    isValid = false;
+                } else {
+                    clearError(phoneInput, phoneError);
+                }
+
+                return isValid;
+            }
+
+            /**
+             * Initialize DataLayer for analytics tracking
+             * @returns {void}
+             */
+            function initDataLayer() {
+                window.dataLayer = window.dataLayer || [];
+            }
+
+            /**
+             * Push event to DataLayer for conversion tracking
+             * @returns {void}
+             */
+            function pushConversionEvent() {
+                window.dataLayer.push({
+                    event: 'consultation_form_submitted',
+                    form_name: 'consultation_form',
+                    clinic: 'default'
+                });
+            }
+
+            /**
+             * Handle successful form submission
+             * @returns {void}
+             */
+            function handleSuccess() {
+                // Hide form, show success message
+                form.style.display = 'none';
+                formSuccess.classList.add('visible');
+
+                // Push conversion event to DataLayer
+                pushConversionEvent();
+
+                // Log for debugging (remove in production)
+                console.log('Form submitted successfully');
+            }
+
+            /**
+             * Form submission handler
+             * @param {Event} event - Submit event
+             */
+            function handleSubmit(event) {
+                event.preventDefault();
+
+                // Validate form
+                if (!validateForm()) {
+                    // Focus first invalid input
+                    if (nameInput.classList.contains('error')) {
+                        nameInput.focus();
+                    } else if (phoneInput.classList.contains('error')) {
+                        phoneInput.focus();
+                    }
+                    return;
+                }
+
+                // Handle successful submission
+                handleSuccess();
+            }
+
+            // Real-time validation on input change
+            nameInput.addEventListener('input', function() {
+                if (this.value.trim()) {
+                    clearError(this, nameError);
+                }
+            });
+
+            phoneInput.addEventListener('input', function() {
+                if (isValidPhone(this.value)) {
+                    clearError(this, phoneError);
+                }
+            });
+
+            // Form submission event listener
+            form.addEventListener('submit', handleSubmit);
+
+            // Initialize DataLayer on page load
+            initDataLayer();
+        })();
+    </script>
+</body>
+</html>
