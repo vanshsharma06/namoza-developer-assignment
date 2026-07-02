@@ -722,10 +722,8 @@
              * @returns {boolean} - True if valid
              */
             function isValidPhone(phone) {
-                // Remove any non-digit characters and check for exactly 10 digits
-                const digitsOnly = phone.replace(/\D/g, '');
-                return /^\d{10}$/.test(digitsOnly);
-            }
+    return /^[0-9]{10}$/.test(phone);
+}
 
             /**
              * Show error state for input
@@ -841,10 +839,17 @@
             });
 
             phoneInput.addEventListener('input', function() {
-                if (isValidPhone(this.value)) {
-                    clearError(this, phoneError);
-                }
-            });
+    if (this.value === "") {
+        clearError(this, phoneError);
+        return;
+    }
+
+    if (isValidPhone(this.value)) {
+        clearError(this, phoneError);
+    } else {
+        showError(this, phoneError);
+    }
+});
 
             // Form submission event listener
             form.addEventListener('submit', handleSubmit);
